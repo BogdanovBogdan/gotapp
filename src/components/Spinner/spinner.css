@@ -85,7 +85,8 @@
 .loadingio-spinner-spin-lv7l26fsego {
   width: 200px;
   height: 200px;
-  display: inline-block;
+  display: block;
+  margin: 0 auto;
   overflow: hidden;
   background: rgba(NaN, NaN, NaN, 0);
 }
