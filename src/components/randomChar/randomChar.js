@@ -7,13 +7,22 @@ import Spinner from '../Spinner';
 export default class RandomChar extends Component {
   constructor() {
     super();
-    this.updateCharacter();
+    this.state = {
+      character: {},
+      loading: true,
+    }
+    this.gotService = new gotService();
   }
   
-  gotService = new gotService();
-  state = {
-    character: {},
-    loading: true,
+  componentDidMount() {
+    this.updateCharacter()
+    this.timerId = setInterval(() => {
+      this.updateCharacter();
+    }, 2000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerId);
   }
   
   updateCharacter() {
