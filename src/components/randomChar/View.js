@@ -8,19 +8,19 @@ export default function View({ character }) {
       <ul className="list-group list-group-flush">
         <li className="list-group-item d-flex justify-content-between">
           <span className="term">Gender </span>
-          <span>{ gender }</span>
+          <span>{ gender || <i>no data</i> }</span>
         </li>
         <li className="list-group-item d-flex justify-content-between">
           <span className="term">Born </span>
-          <span>{ born }</span>
+          <span>{ born || <i>no data</i> }</span>
         </li>
         <li className="list-group-item d-flex justify-content-between">
           <span className="term">Died </span>
-          <span>{ died }</span>
+          <span>{ died || <i>no data</i> }</span>
         </li>
         <li className="list-group-item d-flex justify-content-between">
           <span className="term">Culture </span>
-          <span>{ culture }</span>
+          <span>{ culture || <i>no data</i> }</span>
         </li>
       </ul>
     </>
