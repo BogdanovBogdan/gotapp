@@ -16,11 +16,11 @@ export default class App extends Component {
   toggleRenderChar = () => {
     const { renderCharIsVisible } = this.state;
     this.setState({ renderCharIsVisible: !renderCharIsVisible });
-  }
-  
+  };
+
   render() {
     const { renderCharIsVisible } = this.state;
-    
+
     return (
       <>
         <Container>
@@ -29,7 +29,7 @@ export default class App extends Component {
         <Container>
           <Row>
             <Col lg={{ size: 5, offset: 0 }}>
-              {renderCharIsVisible ? <RandomChar /> : null }
+              {renderCharIsVisible ? <RandomChar /> : null}
               <Button color="primary" onClick={this.toggleRenderChar}>
                 Toggle component
               </Button>
