@@ -12,7 +12,7 @@ export default class Api {
   }
 
   async getAllCharacters() {
-    const characters = await this.getResource(`/character?page=5&pageSize=10`);
+    const characters = await this.getResource(`/characters?page=5&pageSize=10`);
     return characters.map(this._transformCharacter);
   }
 
