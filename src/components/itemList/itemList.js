@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import "./itemList.css";
 import gotService from "../../api";
+import Spinner from "../Spinner";
 
 export default class ItemList extends Component {
   constructor() {
     super();
     this.state = {
       characters: [],
+      loading: true,
     };
     this.gotService = new gotService();
   }
@@ -17,8 +19,7 @@ export default class ItemList extends Component {
 
   updateList() {
     this.gotService.getAllCharacters().then((characters) => {
-      this.setState({ characters });
-      console.log({ state: this.state });
+      this.setState({ characters, loading: false });
     });
   }
 
@@ -32,6 +33,12 @@ export default class ItemList extends Component {
   }
 
   render() {
-    return <ul className="item-list list-group">{this.renderList()}</ul>;
+    const { loading } = this.state;
+
+    return (
+      <ul className="item-list list-group">
+        {loading ? <Spinner /> : this.renderList()}
+      </ul>
+    );
   }
 }
