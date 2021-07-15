@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Col, Row, Container } from "reactstrap";
+import gotService from "../../api";
 import Header from "../header";
 import RandomChar from "../randomChar";
 import ItemList from "../itemList";
@@ -8,14 +9,22 @@ import CharDetails from "../charDetails";
 export default class App extends Component {
   constructor() {
     super();
+    this.gotService = new gotService();
     this.state = {
       renderCharIsVisible: true,
+      selectedChar: null,
     };
   }
 
   toggleRenderChar = () => {
     const { renderCharIsVisible } = this.state;
     this.setState({ renderCharIsVisible: !renderCharIsVisible });
+  };
+
+  onCharClick = (id) => {
+    gotService.getCharacter(id).then((char) => {
+      this.setState({ selectedChar: char });
+    });
   };
 
   render() {
@@ -37,7 +46,7 @@ export default class App extends Component {
           </Row>
           <Row className="mt-5">
             <Col md="6">
-              <ItemList />
+              <ItemList onCharClick={this.onCharClick} />
             </Col>
             <Col md="6">
               <CharDetails />
