@@ -1,3 +1,8 @@
+function getCharacterId(url) {
+  const splittingUrl = url.split("/");
+  return splittingUrl[splittingUrl.length - 1];
+}
+
 export default class Api {
   constructor() {
     this._apiBase = "https://www.anapioficeandfire.com/api";
@@ -39,6 +44,7 @@ export default class Api {
 
   _transformCharacter = (character) => {
     return {
+      id: getCharacterId(character.url),
       name: character.name,
       gender: character.gender,
       born: character.born,
