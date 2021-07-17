@@ -12,7 +12,7 @@ export default class App extends Component {
     this.gotService = new gotService();
     this.state = {
       renderCharIsVisible: true,
-      selectedChar: null,
+      selectedCharId: null,
     };
   }
 
@@ -22,13 +22,11 @@ export default class App extends Component {
   };
 
   onCharClick = (id) => {
-    gotService.getCharacter(id).then((char) => {
-      this.setState({ selectedChar: char });
-    });
+    this.setState({ selectedCharId: id });
   };
 
   render() {
-    const { renderCharIsVisible } = this.state;
+    const { renderCharIsVisible, selectedCharId } = this.state;
 
     return (
       <>
@@ -49,7 +47,7 @@ export default class App extends Component {
               <ItemList onCharClick={this.onCharClick} />
             </Col>
             <Col md="6">
-              <CharDetails />
+              <CharDetails selectedCharId={selectedCharId}/>
             </Col>
           </Row>
         </Container>
