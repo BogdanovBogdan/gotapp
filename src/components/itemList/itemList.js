@@ -26,7 +26,11 @@ export default class ItemList extends Component {
   renderList() {
     const { characters } = this.state;
     return characters.map((character, index) => (
-      <li key={index} className="list-group-item">
+      <li
+        key={character.id}
+        className="list-group-item"
+        onClick={() => this.props.onCharClick(character.id)}
+      >
         {character.name}
       </li>
     ));
