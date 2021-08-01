@@ -10,10 +10,11 @@ export default class Api {
 
   getResource = async (url) => {
     const res = await fetch(`${this._apiBase}${url}`);
+    const json = await res.json();
     if (!res.ok) {
-      throw new Error(`Could not fetch ${url}, received ${res.json()}`);
+      throw new Error(`Could not fetch ${url}, received ${json}`);
     }
-    return await res.json();
+    return json;
   }
 
   getAllCharacters = async () => {
