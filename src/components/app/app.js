@@ -44,7 +44,10 @@ export default class App extends Component {
           </Row>
           <Row className="mt-5">
             <Col md="6">
-              <ItemList onCharClick={this.onCharClick} />
+              <ItemList 
+                onCharClick={this.onCharClick}
+                renderItem={(item) => `${item.name} (${item.gender})`}
+                />
             </Col>
             <Col md="6">
               <CharDetails selectedCharId={selectedCharId}/>
