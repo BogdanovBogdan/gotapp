@@ -1,4 +1,4 @@
-function getCharacterId(url) {
+function getResourceId(url) {
   const splittingUrl = url.split("/");
   return splittingUrl[splittingUrl.length - 1];
 }
@@ -48,7 +48,7 @@ export default class Api {
 
   _transformCharacter = (character) => {
     return {
-      id: getCharacterId(character.url),
+      id: getResourceId(character.url),
       nameObject: 'Character',
       name: character.name,
       gender: character.gender,
@@ -60,6 +60,7 @@ export default class Api {
 
   _transformHouse = (house) => {
     return {
+      id: getResourceId(house.url),
       nameObject: 'House',
       name: house.name,
       region: house.region,
@@ -71,6 +72,7 @@ export default class Api {
 
   _transformBook = (book) => {
     return {
+      id: getResourceId(book.url),
       nameObject: 'Book',
       name: book.name,
       numberOfPages: book.numberOfPages,
