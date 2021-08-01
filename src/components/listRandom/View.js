@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function View({ character }) {
-  const { name, gender, born, died, culture } = character;
+export default function View({ item }) {
+  const { name, gender, born, died, culture } = item;
   return (
     <>
       <h4>Random Character: { name }</h4>

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import "./randomChar.css";
+import "./listRandom.css";
 import gotService from '../../api';
 import View from './View';
 import Spinner from '../Spinner';
 
-export default class RandomChar extends Component {
+export default class ListRandom extends Component {
   constructor() {
     super();
     this.state = {
-      character: {},
+      item: {},
       loading: true,
     }
     this.gotService = new gotService();
@@ -26,16 +26,19 @@ export default class RandomChar extends Component {
   }
   
   updateCharacter() {
+    const { method } = this.props;
     const id = Math.floor(Math.random() * 100 + 25);
-    this.gotService.getCharacter(id)
-      .then((character) => { this.setState({character, loading: false}); });
+    this.gotService[method](id)
+      .then((item) => { 
+        this.setState({item, loading: false}); });
   }
   
   render() {
-    const { character, loading } = this.state;
+    const { item, loading } = this.state;
+
     return (
       <div className="random-block rounded">
-        { loading ? <Spinner /> : <View character={character}/> }
+        { loading || !Object.keys(item).length ? <Spinner /> : <View item={item}/> }
       </div>
     );
   }

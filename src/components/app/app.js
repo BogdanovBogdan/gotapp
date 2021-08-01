@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, Col, Row, Container } from "reactstrap";
 import gotService from "../../api";
 import Header from "../header";
-import RandomChar from "../randomChar";
+import ListRandom from "../listRandom";
 import ItemList from "../itemList";
 import CharDetails from "../charDetails";
 
@@ -11,14 +11,14 @@ export default class App extends Component {
     super();
     this.gotService = new gotService();
     this.state = {
-      renderCharIsVisible: true,
+      listRandomIsVisible: true,
       selectedCharId: null,
     };
   }
 
   toggleRenderChar = () => {
-    const { renderCharIsVisible } = this.state;
-    this.setState({ renderCharIsVisible: !renderCharIsVisible });
+    const { listRandomIsVisible } = this.state;
+    this.setState({ listRandomIsVisible: !listRandomIsVisible });
   };
 
   onCharClick = (id) => {
@@ -26,7 +26,7 @@ export default class App extends Component {
   };
 
   render() {
-    const { renderCharIsVisible, selectedCharId } = this.state;
+    const { listRandomIsVisible, selectedCharId } = this.state;
 
     return (
       <>
@@ -36,7 +36,7 @@ export default class App extends Component {
         <Container>
           <Row>
             <Col lg={{ size: 5, offset: 0 }}>
-              {renderCharIsVisible ? <RandomChar /> : null}
+              {listRandomIsVisible ? <ListRandom method="getCharacter"/> : null}
               <Button color="primary" onClick={this.toggleRenderChar}>
                 Toggle component
               </Button>
@@ -51,6 +51,13 @@ export default class App extends Component {
             </Col>
           </Row>
         </Container>
+        {/* <Container>
+          <Row>
+            <Col lg={{ size: 5, offset: 0 }}>
+              <ListRandom method="getHouse"/>
+            </Col>
+          </Row>
+        </Container> */}
       </>
     );
   }
