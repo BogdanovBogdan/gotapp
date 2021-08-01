@@ -49,6 +49,7 @@ export default class Api {
   _transformCharacter = (character) => {
     return {
       id: getCharacterId(character.url),
+      nameObject: 'Character',
       name: character.name,
       gender: character.gender,
       born: character.born,
@@ -59,6 +60,7 @@ export default class Api {
 
   _transformHouse = (house) => {
     return {
+      nameObject: 'House',
       name: house.name,
       region: house.region,
       words: house.words,
@@ -69,6 +71,7 @@ export default class Api {
 
   _transformBook = (book) => {
     return {
+      nameObject: 'Book',
       name: book.name,
       numberOfPages: book.numberOfPages,
       publisher: book.publisher,

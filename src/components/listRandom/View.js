@@ -1,27 +1,22 @@
 import React from 'react';
 
 export default function View({ item }) {
-  const { name, gender, born, died, culture } = item;
+  const exclusionValue = ['nameObject', 'id'];
   return (
     <>
-      <h4>Random Character: { name }</h4>
+      <h4>Random { item.nameObject }: { item.name }</h4>
       <ul className="list-group list-group-flush">
-        <li className="list-group-item d-flex justify-content-between">
-          <span className="term">Gender </span>
-          <span>{ gender || <i>no data</i> }</span>
-        </li>
-        <li className="list-group-item d-flex justify-content-between">
-          <span className="term">Born </span>
-          <span>{ born || <i>no data</i> }</span>
-        </li>
-        <li className="list-group-item d-flex justify-content-between">
-          <span className="term">Died </span>
-          <span>{ died || <i>no data</i> }</span>
-        </li>
-        <li className="list-group-item d-flex justify-content-between">
-          <span className="term">Culture </span>
-          <span>{ culture || <i>no data</i> }</span>
-        </li>
+        { Object.entries(item).map(([key, value]) => {
+          if (exclusionValue.includes(key)) return null;
+          const stringValue = Array.isArray(value) ? value.join(',') : value;
+
+          return (
+            <li key={key} className="list-group-item d-flex justify-content-between">
+              <span className="term">{ key }</span>
+              <span>{ (stringValue.length && stringValue) || <i>no data</i> }</span>
+            </li>
+          )
+        }) }
       </ul>
     </>
   )
