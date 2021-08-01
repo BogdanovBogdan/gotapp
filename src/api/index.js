@@ -27,19 +27,23 @@ export default class Api {
   }
 
   getAllBooks = async () => {
-    return this.getResource(`/books?page=5&pageSize=10`);
+    const books = await this.getResource(`/books?page=5&pageSize=10`)
+    return books.map(this._transformBook);
   }
 
   getBook = async (id) => {
-    return this.getResource(`/books/${id}`);
+    const book = await this.getResource(`/books/${id}`);
+    return this._transformBook(book);
   }
 
   getAllHouses = async () => {
-    return this.getResource(`/houses?page=5&pageSize=10`);
+    const houses = await this.getResource(`/houses?page=5&pageSize=10`);
+    return houses.map(this._transformHouse);
   }
 
-  getHouses = async (id) => {
-    return this.getResource(`/houses/${id}`);
+  getHouse = async (id) => {
+    const house = await this.getResource(`/houses/${id}`);
+    return this._transformHouse(house);
   }
 
   _transformCharacter = (character) => {
