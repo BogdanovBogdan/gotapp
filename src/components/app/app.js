@@ -5,6 +5,7 @@ import Header from "../header";
 import ListRandom from "../listRandom";
 import ItemList from "../itemList";
 import CharDetails from "../charDetails";
+import RowBlock from "../rowBlock";
 
 export default class App extends Component {
   constructor() {
@@ -28,6 +29,17 @@ export default class App extends Component {
   render() {
     const { listRandomIsVisible, selectedCharId } = this.state;
 
+    const itemList = () => (
+      <ItemList 
+        onCharClick={this.onCharClick}
+        renderItem={(item) => `${item.name} (${item.gender})`}
+      />
+    )
+
+    const charDetails = () => (
+      <CharDetails selectedCharId={selectedCharId}/>
+    )
+
     return (
       <>
         <Container>
@@ -42,17 +54,7 @@ export default class App extends Component {
               </Button>
             </Col>
           </Row>
-          <Row className="mt-5">
-            <Col md="6">
-              <ItemList 
-                onCharClick={this.onCharClick}
-                renderItem={(item) => `${item.name} (${item.gender})`}
-                />
-            </Col>
-            <Col md="6">
-              <CharDetails selectedCharId={selectedCharId}/>
-            </Col>
-          </Row>
+          <RowBlock leftCol={itemList} rigthCol={charDetails} />
         </Container>
         {/* <Container>
           <Row>
