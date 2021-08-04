@@ -4,7 +4,7 @@ import gotService from "../../api";
 import Header from "../header";
 import ListRandom from "../listRandom";
 import ItemList from "../itemList";
-import CharDetails from "../charDetails";
+import ItemDetails from "../itemDetails";
 import RowBlock from "../rowBlock";
 
 export default class App extends Component {
@@ -36,8 +36,8 @@ export default class App extends Component {
       />
     )
 
-    const charDetails = () => (
-      <CharDetails selectedCharId={selectedCharId}/>
+    const itemDetails = () => (
+      <ItemDetails selectedCharId={selectedCharId}/>
     )
 
     return (
@@ -54,7 +54,7 @@ export default class App extends Component {
               </Button>
             </Col>
           </Row>
-          <RowBlock leftCol={itemList} rigthCol={charDetails} />
+          <RowBlock leftCol={itemList} rigthCol={itemDetails} />
         </Container>
         {/* <Container>
           <Row>

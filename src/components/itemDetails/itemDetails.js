@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "./charDetails.css";
+import "./itemDetails.css";
 import gotService from "../../api";
 
-export default class CharDetails extends Component {
+export default class ItemDetails extends Component {
   constructor() {
     super();
     this.gotService = new gotService();
@@ -30,7 +30,7 @@ export default class CharDetails extends Component {
   render() {
     if (!this.state.character) {
       return (
-        <div class="char-details rounded">
+        <div className="char-details rounded">
           <h4>Character not selected</h4>
         </div>
       );
