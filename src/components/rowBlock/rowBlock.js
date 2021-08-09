@@ -1,11 +1,11 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
 
-const RowBlock = ({ leftCol, rightCol }) => {
+const RowBlock = ({ leftCol, rigthCol }) => {
   return (
     <Row className="mt-5">
       <Col md="6">{ leftCol }</Col>
-      <Col md="6">{ rightCol }</Col>
+      <Col md="6">{ rigthCol }</Col>
     </Row>
   )
 }

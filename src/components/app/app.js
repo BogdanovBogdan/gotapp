@@ -29,14 +29,14 @@ export default class App extends Component {
   render() {
     const { listRandomIsVisible, selectedCharId } = this.state;
 
-    const itemList = () => (
+    const itemList = (
       <ItemList 
         onCharClick={this.onCharClick}
         renderItem={(item) => `${item.name} (${item.gender})`}
       />
     )
 
-    const itemDetails = () => (
+    const itemDetails = (
       <ItemDetails selectedCharId={selectedCharId}/>
     )
 
