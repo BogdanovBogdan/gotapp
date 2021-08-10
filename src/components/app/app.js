@@ -13,31 +13,31 @@ export default class App extends Component {
     this.gotService = new gotService();
     this.state = {
       listRandomIsVisible: true,
-      selectedCharId: null,
+      selectedItemId: null,
     };
   }
 
-  toggleRenderChar = () => {
+  toggleListRandom = () => {
     const { listRandomIsVisible } = this.state;
     this.setState({ listRandomIsVisible: !listRandomIsVisible });
   };
 
-  onCharClick = (id) => {
-    this.setState({ selectedCharId: id });
+  onItemClick = (id) => {
+    this.setState({ selectedItemId: id });
   };
 
   render() {
-    const { listRandomIsVisible, selectedCharId } = this.state;
+    const { listRandomIsVisible, selectedItemId } = this.state;
 
     const itemList = (
       <ItemList 
-        onCharClick={this.onCharClick}
+        onCharClick={this.onItemClick}
         renderItem={(item) => `${item.name} (${item.gender})`}
       />
     )
 
     const itemDetails = (
-      <ItemDetails selectedCharId={selectedCharId}/>
+      <ItemDetails selectedItemId={selectedItemId}/>
     )
 
     return (
@@ -49,7 +49,7 @@ export default class App extends Component {
           <Row>
             <Col lg={{ size: 5, offset: 0 }}>
               {listRandomIsVisible ? <ListRandom method="getCharacter"/> : null}
-              <Button color="primary" onClick={this.toggleRenderChar}>
+              <Button color="primary" onClick={this.toggleListRandom}>
                 Toggle component
               </Button>
             </Col>
