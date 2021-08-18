@@ -1,45 +1,33 @@
 import React, { Component } from "react";
+import { Button, Col } from "reactstrap";
 import "./listRandom.css";
+import Block from "./block";
 import gotService from '../../api';
-import View from './View';
-import Spinner from '../Spinner';
-
 export default class ListRandom extends Component {
   constructor() {
     super();
     this.state = {
-      item: {},
-      loading: true,
+      isVisible: true,
     }
     this.gotService = new gotService();
   }
-  
-  componentDidMount() {
-    this.updateCharacter()
-    this.timerId = setInterval(() => {
-      this.updateCharacter();
-    }, 2000);
+
+  onClick = () => {
+    const { isVisible } = this.state;
+    this.setState({ isVisible: !isVisible });
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timerId);
-  }
-  
-  updateCharacter() {
-    const { method } = this.props;
-    const id = Math.floor(Math.random() * 100 + 25);
-    this.gotService[method](id)
-      .then((item) => { 
-        this.setState({item, loading: false}); });
-  }
-  
   render() {
-    const { item, loading } = this.state;
+    const { method } = this.props;
+    const { isVisible } = this.state;
 
     return (
-      <div className="random-block rounded">
-        { loading || !Object.keys(item).length ? <Spinner /> : <View item={item}/> }
-      </div>
+      <Col lg={{ size: 5, offset: 0 }}>
+        { isVisible ? <Block method={method}/> : null }
+        <Button color="primary" onClick={this.onClick}>
+          Toggle component
+        </Button>
+      </Col>
     );
   }
 }

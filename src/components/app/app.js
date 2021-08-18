@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Button, Col, Row, Container } from "reactstrap";
-import gotService from "../../api";
+import { Row, Container } from "reactstrap";
 import Header from "../header";
 import ListRandom from "../listRandom";
 import ItemList from "../itemList";
@@ -10,24 +9,17 @@ import RowBlock from "../rowBlock";
 export default class App extends Component {
   constructor() {
     super();
-    this.gotService = new gotService();
     this.state = {
-      listRandomIsVisible: true,
       selectedItemId: null,
     };
   }
-
-  toggleListRandom = () => {
-    const { listRandomIsVisible } = this.state;
-    this.setState({ listRandomIsVisible: !listRandomIsVisible });
-  };
 
   onItemClick = (id) => {
     this.setState({ selectedItemId: id });
   };
 
   render() {
-    const { listRandomIsVisible, selectedItemId } = this.state;
+    const { selectedItemId } = this.state;
 
     const itemList = (
       <ItemList 
@@ -47,12 +39,7 @@ export default class App extends Component {
         </Container>
         <Container>
           <Row>
-            <Col lg={{ size: 5, offset: 0 }}>
-              {listRandomIsVisible ? <ListRandom method="getCharacter"/> : null}
-              <Button color="primary" onClick={this.toggleListRandom}>
-                Toggle component
-              </Button>
-            </Col>
+            <ListRandom method="getCharacter" />
           </Row>
           <RowBlock leftCol={itemList} rigthCol={itemDetails} />
         </Container>
