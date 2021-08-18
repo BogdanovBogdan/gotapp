@@ -16,13 +16,13 @@ export default class ItemDetails extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.selectedCharId !== this.props.selectedCharId) this.updateChar();
+    if (prevProps.selectedItemId !== this.props.selectedItemId) this.updateChar();
   }
 
   updateChar() {
-    if (!this.props.selectedCharId) return null;
-    const { selectedCharId } = this.props;
-    this.gotService.getCharacter(selectedCharId).then((char) => {
+    if (!this.props.selectedItemId) return null;
+    const { selectedItemId } = this.props;
+    this.gotService.getCharacter(selectedItemId).then((char) => {
       this.setState({ character: char });
     });
   }
